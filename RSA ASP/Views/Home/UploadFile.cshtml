@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "RSA ";
+}
+<h2>Podpis cyfrowy RSA</h2>
+
+@using (Html.BeginForm("UploadFile", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+<div>
+    @Html.TextBox("file", "", new { type = "file" }) <br />
+    <table class="table"> <tr>
+    <td>@Html.TextArea("RSAPub", (string)ViewBag.pubkey, new { @class = "form-control", style="height:400px" })</td>
+    <td>@Html.TextArea("RSAPriv", (string)ViewBag.privkey, new { @class = "form-control", style = "height:400px" })</td>
+    <td>@Html.TextArea("Sign", (string)ViewBag.rsasig, new { @class = "form-control", style = "height:400px" })</td>
+</tr></table>
+    <!--<textarea id="RSAPub" name="RSAPub" type="text" style="width:300px;height:500px" placeholder="Sygnatura" value="@(ViewBag.pubkey)></textarea>
+        <textarea id="RSAPriv" name="RSAPriv" type="text" style="width:300px;height:500px" placeholder="Klucz prywatny" value="@(ViewBag.privkey)"></textarea>
+        <textarea id="Sign" name="Sign" type="text" style="width:300px;height:500px" placeholder="Sygnatura" value="@(ViewBag.rsasig)></textarea> <br />-->
+        <input type="submit" value="Podpisz" name="SignFile" formaction="SignFile" />
+        <input type="submit" value="Generuj klucze" name="GenerateRSA" formaction="GenerateRSA" />
+        <input type="submit" value="Sprawdź podpis" name="Verify" formaction="VerifySignature" />
+    <!--
+        <input type="text" id="RSAPub" name="RSAPub" style="width:300px;height:500px;text-wrap:normal" placeholder="Klucz publiczny" value="@(ViewBag.pubkey)" />
+        <input type="text" id="RSAPriv" name="RSAPriv" style="width:300px;height:500px" placeholder="Klucz prywatny" value="@(ViewBag.privkey)" />
+        <input type="text" id="Sign" name="Sign" style="width:300px;height:500px"" /> <br />-->
+    @ViewBag.Message
+
+</div>
+
+
+}
+
